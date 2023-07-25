@@ -45,6 +45,18 @@
 #define VariableRegister(lua, value) do { lua_pushinteger(lua, value); lua_setglobal (lua, stringify(value)); } while(0)
 #define CONFIG_3D_SLIDERSTATE (*(float*)0x1FF81080)
 
+static int lua_get_size(lua_state *L){
+	int argc = lua_gettop(L);
+	if(argc != 1) return luaL_error(L, "wrong number of arguments");
+	int screen = luaL_checkinteger(L,1);
+
+	// width
+	if(screen == 0) lua_pushinteger(L, 400);
+	else lua_pushinteger(L, 320);
+
+	lua_pushinteger(L, 240); // height
+	return 2
+}
 
 static int lua_print(lua_State *L){
 	int argc = lua_gettop(L);
@@ -882,6 +894,7 @@ static const luaL_Reg Screen_functions[] = {
   {"fillEmptyRect",       lua_fillEmptyRect},
   {"drawPixel",           lua_pixel},
   {"getPixel",            lua_pixel2},
+  {"getSize",             lua_get_size},
   {"enable3D",            lua_enable3D},
   {"get3DLevel",          lua_get3D},
   {"disable3D",           lua_disable3D},
