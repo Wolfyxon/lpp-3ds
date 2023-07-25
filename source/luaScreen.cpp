@@ -45,16 +45,22 @@
 #define VariableRegister(lua, value) do { lua_pushinteger(lua, value); lua_setglobal (lua, stringify(value)); } while(0)
 #define CONFIG_3D_SLIDERSTATE (*(float*)0x1FF81080)
 
+static int get_width(screen){
+	if(screen == 0) return 400;
+	else return 320;
+}
+
+static int get_height(){
+	return 240;
+}
+
 static int lua_get_size(lua_state *L){
 	int argc = lua_gettop(L);
 	if(argc != 1) return luaL_error(L, "wrong number of arguments");
 	int screen = luaL_checkinteger(L,1);
 
-	// width
-	if(screen == 0) lua_pushinteger(L, 400);
-	else lua_pushinteger(L, 320);
-
-	lua_pushinteger(L, 240); // height
+	lua_pushinteger(L, get_width(screen)) //width
+	lua_pushinteger(L, get_height()); // height
 	return 2
 }
 
