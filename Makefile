@@ -36,8 +36,8 @@ SOURCES		:=	source/include/lua	source source/include source/include/graphics \
 DATA		:=	data
 INCLUDES	:=	source/include
 
-APP_TITLE	:=	Lua Player Plus 3DS
-APP_AUTHOR	:=	Rinnegatamante
+APP_TITLE	:=	Lua Player Plus 3DS (fork)
+APP_AUTHOR	:=	Rinnegatamante, continued by Wolfyxon
 APP_DESCRIPTION	:=	Lua interpreter for 3DS
 #---------------------------------------------------------------------------------
 # options for code generation
